@@ -1,0 +1,33 @@
+.movie-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.movie-item {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.movie-item img {
+  width: 232px;
+  height: 345px;
+
+}
+
+.seen-movie {
+  width: 232px;
+  height: 40px;
+  background-color: orange;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  /* padding: 2rem; */
+  font-size: 1.6rem;
+  border: none;
+}

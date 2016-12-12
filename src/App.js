@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import MovieList from './MovieList';
+
+// import logo from './logo.svg';
 import './App.css';
 
 import AppBar from 'material-ui/AppBar';
@@ -26,7 +28,7 @@ class App extends Component {
         <div className="App">
           <AppBar title="Movied"/>
           <div style={{padding:24}}>
-            {/* … Your code here … */}
+            <MovieList></MovieList>
           </div>
         </div>
       </MuiThemeProvider>
