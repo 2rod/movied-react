@@ -16,10 +16,29 @@
 .movie-item img {
   width: 232px;
   height: 345px;
+}
+
+.poster-seen {
+  opacity: .5;
 
 }
 
+
+
 .seen-movie {
+  width: 232px;
+  height: 40px;
+  background-color: orange;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  border: none;
+  visibility: hidden;
+  }
+
+.unseen-movie {
   width: 232px;
   height: 40px;
   background-color: orange;

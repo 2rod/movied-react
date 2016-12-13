@@ -7,7 +7,7 @@ class MovieList extends Component {
   constructor () {
     super();
     this.state = {
-      movies: []
+      movies: {}
     };
   }
 
@@ -15,41 +15,54 @@ class MovieList extends Component {
     fetch('https://movied.herokuapp.com/discover')
       .then((response) => response.json())
       .then((movies) => {
-        this.setState({movies});
+        this.parseMovies(movies);
+        // console.log('state', this.state.movies);
       }
     );
   }
 
+
   render () {
+    let movieList = [];
+    const {movies} = this.state;
+    for (let movieId in movies) {
+      if (movies.hasOwnProperty(movieId)) {
+        movieList.push(
+          <MovieListItem
+            key={movieId}
+            movie={movies[movieId]}
+            // onSeen={() => this.onClickHandler(movieId)}
+          ></MovieListItem>
+        )
+      }
+    }
+      // console.log('movieList: ', movieList);
+
     return (
         <div className="movie-list">
-            {this.state.movies.map((movie) => (
-              <MovieListItem
-                key={movie.id}
-                movie={movie}
-                onSeen={() => this.onClickHandler}
-                ></MovieListItem>
-            ))}
+            {movieList}
         </div>
     );
+  }
+
+  parseMovies (moviesArray) {
+    let moviesObj = {};
+    moviesArray.forEach((movie) => {
+      moviesObj[movie.id] = {
+        seen: false,
+        poster_path: movie.poster_path
+      };
+
+    });
+    this.setState({
+      movies: moviesObj
+    });
   }
 
   getMovieIndex (movieId) {
     return this.state.movies.find(object => object.id === movieId );
   }
 
-  onClickHandler (movieId) {
-      const movies = this.state.movies.map(movie => {
-        if(movie.id === movieId) {
-          movie.seen = true
-        }
-
-        return movie;
-      })
-      this.setState({
-        movies
-      });
-  }
 
 }
 
