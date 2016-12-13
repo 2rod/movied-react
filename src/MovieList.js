@@ -21,36 +21,41 @@ class MovieList extends Component {
     );
   }
 
+  handleSeen(movieId) {
+    const movie = this.state.movies[movieId];
+    const newMovie = { ...movie };
+    newMovie.seen = true;
+
+    const movies = this.state.movies;
+    movies[movieId] = newMovie;
+
+    this.setState({ movies });
+  }
+
 
   render () {
-    let movieList = [];
-    const {movies} = this.state;
-    for (let movieId in movies) {
-      if (movies.hasOwnProperty(movieId)) {
-        movieList.push(
-          <MovieListItem
-            key={movieId}
-            movie={movies[movieId]}
-            // onSeen={() => this.onClickHandler(movieId)}
-          ></MovieListItem>
-        )
-      }
-    }
-      // console.log('movieList: ', movieList);
-
     return (
         <div className="movie-list">
-            {movieList}
+            {
+              Object.keys(this.state.movies).map(movieId =>
+                <MovieListItem
+                  key={ movieId }
+                  movie={ this.state.movies[movieId] }
+                  onSeen={ this.handleSeen.bind(this) }
+                />
+              )
+            }
         </div>
     );
   }
 
-  parseMovies (moviesArray) {
+  parseMovies(moviesArray) {
     let moviesObj = {};
     moviesArray.forEach((movie) => {
       moviesObj[movie.id] = {
         seen: false,
-        poster_path: movie.poster_path
+        poster_path: movie.poster_path,
+        id: movie.id,
       };
 
     });

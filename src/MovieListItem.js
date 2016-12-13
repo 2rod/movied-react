@@ -2,23 +2,29 @@ import React, { Component } from 'react';
 
 class MovieListItem extends Component {
 
-  state ={
-    seen: false
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      seen: false
+    };
+  }
+
+  onSeen() {
+    this.props.onSeen(this.props.movie.id);
   }
 
   render () {
-    const {movie, seen} = this.props;
+    const {movie} = this.props;
     // console.log('movie in item:', movie);
     return (
       <div className="movie-item">
-        <img className={this.state.seen ? "poster-seen " : ""} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
+        <img className={movie.seen ? "poster-seen " : ""} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
         <button
-          className={this.state.seen ? "seen-movie" : "unseen-movie"}
-          onClick={() => this.setState({
-            seen: true
-          })}
+          className={movie.seen ? "seen-movie" : "unseen-movie"}
+          onClick={this.onSeen.bind(this)}
           >
-          {this.props.movie.seen ? ':D' : 'seen'}
+          seen
         </button>
       </div>
     )
