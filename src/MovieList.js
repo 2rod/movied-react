@@ -24,10 +24,31 @@ class MovieList extends Component {
     return (
         <div className="movie-list">
             {this.state.movies.map((movie) => (
-              <div className="movie-item"> <img src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/><button className="seen-movie">seen</button></div>
+              <MovieListItem
+                key={movie.id}
+                movie={movie}
+                onSeen={() => this.onClickHandler}
+                ></MovieListItem>
             ))}
         </div>
     );
+  }
+
+  getMovieIndex (movieId) {
+    return this.state.movies.find(object => object.id === movieId );
+  }
+
+  onClickHandler (movieId) {
+      const movies = this.state.movies.map(movie => {
+        if(movie.id === movieId) {
+          movie.seen = true
+        }
+
+        return movie;
+      })
+      this.setState({
+        movies
+      });
   }
 
 }
