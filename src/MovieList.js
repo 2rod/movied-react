@@ -57,7 +57,6 @@ class MovieList extends Component {
         poster_path: movie.poster_path,
         id: movie.id,
       };
-
     });
     this.setState({
       movies: moviesObj

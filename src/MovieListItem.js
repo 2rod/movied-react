@@ -11,6 +11,7 @@ class MovieListItem extends Component {
   }
 
   onSeen() {
+    localStorage.setItem(this.props.movie.id, this.props.movie.id)
     this.props.onSeen(this.props.movie.id);
   }
 
@@ -19,9 +20,9 @@ class MovieListItem extends Component {
     // console.log('movie in item:', movie);
     return (
       <div className="movie-item">
-        <img className={movie.seen ? "poster-seen " : ""} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
+        <img className={movie.seen ? "movie poster-seen " : "movie"} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
         <button
-          className={movie.seen ? "seen-movie" : "unseen-movie"}
+          className={movie.seen ? "movie seen-movie" : "movie unseen-movie"}
           onClick={this.onSeen.bind(this)}
           >
           seen
