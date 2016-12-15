@@ -4,18 +4,17 @@ import './MovieList.css';
 
 class MovieList extends Component {
 
-  handleSeen(movieId) {
-    const movie = this.props.movies[movieId];
-    const newMovie = { ...movie };
-    newMovie.seen = true;
-    const movies = this.props.movies;
-    movies[movieId] = newMovie;
-    this.setState({ movies });
-  }
+  // handleSeen(movieId) {
+  //   const movie = this.props.movies[movieId];
+  //   const newMovie = { ...movie };
+  //   newMovie.seen = true;
+  //   const movies = this.props.movies;
+  //   movies[movieId] = newMovie;
+  //   this.setState({ movies });
+  // }
 
 
   render () {
-    console.log('props in da MoviList: ', this.props);
     return (
         <div className="movie-list">
             {
@@ -23,7 +22,7 @@ class MovieList extends Component {
                 <MovieListItem
                   key={ movieId }
                   movie={ this.props.movies[movieId] }
-                  onSeen={ this.handleSeen.bind(this) }
+                  onSeen={ this.props.handleSeen.bind(this) }
                 />
               )
             }

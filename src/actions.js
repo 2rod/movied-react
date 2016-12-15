@@ -1,40 +1,24 @@
 import React, { Component } from 'react';
+import {fetchMovies, parseMovies} from './movied_api';
 
 export const ADD_MOVIES = 'addMovies';
 
-export const seen = (id) => ({
-  type: 'SEEN',
-  id,
-})
-
-const addMovies = (movies) => ({
+export const addMovies = (movies) => ({
   type: 'ADD_MOVIES',
   movies
 })
 
-export const fetchMovies = () => {
-  return (dispatch) => {
-    fetch('https://movied.herokuapp.com/discover')
-      .then((response) => response.json())
-      .then((movies) => {
-        console.log('in da fetch', movies);
-        return parseMovies(movies);
-      })
-      .then((movies) => {
-        dispatch(addMovies(movies))
-        console.log('after dispatch: ', movies);
-      })
-  }
-}
+export const seen = (id) => ({
+  type: 'SEEN_MOVIE',
+  id
+})
 
-const parseMovies = (moviesArray) => {
-  let moviesObj = {};
-  moviesArray.forEach((movie) => {
-    moviesObj[movie.id] = {
-      seen: false,
-      poster_path: movie.poster_path,
-      id: movie.id,
-    };
-  });
-  return moviesObj;
-}
+
+const handleSeen = (dispatch) => (movieId)  => {
+  // const movie = this.props.movies[movieId];
+  // const newMovie = { ...movie };
+  // newMovie.seen = true;
+  // const movies = this.props.movies;
+  // movies[movieId] = newMovie;
+  dispatch(seen(movieId));
+};

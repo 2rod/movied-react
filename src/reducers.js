@@ -1,17 +1,15 @@
 import { combineReducers } from 'redux';
 
 const movies = (state = {}, action) => {
-  console.log('action: ', action);
+  console.log('state in reducer before seen', state);
   switch (action.type) {
     case 'ADD_MOVIES':
       return ({ ...state, ...action.movies });
-    case 'SEEN':
-      // return state.map((movie) => {
-      //   if (movie.id === action.id) {
-      //     movie.seen = !movie.seen;
-      //   }
-      //   return movie;
-      // })
+    case 'SEEN_MOVIE':
+      state[action.id] = Object.assign({}, state[action.id], {
+        seen: true
+      });
+      console.log('state in reducer after seen', state);
       return state;
     default:
       return state;

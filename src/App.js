@@ -5,7 +5,8 @@ import MovieList from './MovieList';
 // import logo from './logo.svg';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
-import {fetchMovies, seen} from './actions';
+import {seen} from './actions';
+import {fetchMovies} from './movied_api';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {/*amber800,*/black,grey100/*,grey900*/} from 'material-ui/styles/colors';
@@ -30,7 +31,6 @@ class App extends Component {
 
 
   render () {
-    console.log('props in da App', this.props);
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
@@ -38,6 +38,7 @@ class App extends Component {
           <div style={{padding:24}}>
             <MovieList
               movies={this.props.movies}
+              handleSeen={this.props.handleSeen.bind(this)}
               ></MovieList>
           </div>
         </div>
@@ -48,14 +49,12 @@ class App extends Component {
 
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-
+  movies: state.movies
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  seen: (id) => dispatch(seen(id)),
-  fetchMovies: () => dispatch(fetchMovies())
-
+  fetchMovies: () => dispatch(fetchMovies()),
+  handleSeen: (id) => dispatch(seen(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

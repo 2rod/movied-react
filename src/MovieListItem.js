@@ -2,22 +2,15 @@ import React, { Component } from 'react';
 
 class MovieListItem extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      seen: false
-    };
-  }
 
   onSeen() {
-    localStorage.setItem(this.props.movie.id, this.props.movie.id)
+    // localStorage.setItem(this.props.movie.id, this.props.movie.id)
     this.props.onSeen(this.props.movie.id);
   }
 
   render () {
     const {movie} = this.props;
-    // console.log('movie in item:', movie);
+    const {onSeen} = this.props;
     return (
       <div className="movie-item">
         <img className={movie.seen ? "movie poster-seen " : "movie"} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
