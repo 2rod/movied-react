@@ -15,6 +15,7 @@ class MovieList extends Component {
 
 
   render () {
+    console.log('props in da MoviList: ', this.props);
     return (
         <div className="movie-list">
             {

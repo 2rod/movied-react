@@ -8,7 +8,7 @@ import AppBar from 'material-ui/AppBar';
 import {fetchMovies, seen} from './actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {amber800,black,grey100,grey900} from 'material-ui/styles/colors';
+import {/*amber800,*/black,grey100/*,grey900*/} from 'material-ui/styles/colors';
 
 
 const muiTheme = getMuiTheme({
@@ -26,7 +26,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchMovies();
-    console.log('in DidMount:', this.props);
   }
 
 
