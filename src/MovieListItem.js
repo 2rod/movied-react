@@ -16,7 +16,7 @@ class MovieListItem extends Component {
         <img className={movie.seen ? "movie poster-seen " : "movie"} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
         <button
           className={movie.seen ? "movie seen-movie" : "movie unseen-movie"}
-          onClick={this.onSeen.bind(this)}
+          onClick={this.onSeen.bind(this, movie.id)}
           >
           seen
         </button>
