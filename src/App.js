@@ -5,7 +5,7 @@ import MovieList from './MovieList';
 // import logo from './logo.svg';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
-import {seen} from './actions';
+import {seen, getMovies} from './actions';
 import {fetchMovies} from './movied_api';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -22,11 +22,13 @@ const muiTheme = getMuiTheme({
   },
 });
 
+const path = 'https://movied.herokuapp.com/discover';
 
 class App extends Component {
 
+
   componentDidMount() {
-    this.props.fetchMovies();
+    this.props.getMovies(path);
   }
 
 
@@ -54,7 +56,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchMovies: () => dispatch(fetchMovies()),
-  handleSeen: (id) => dispatch(seen(id))
+  handleSeen: (id) => dispatch(seen(id)),
+  getMovies: (route) => dispatch(getMovies(route))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

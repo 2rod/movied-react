@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import reducers from './reducers';
-import thunk from "redux-thunk"
+import thunk from "redux-thunk";
+import apiMiddleware from "./api_service";
 
 import App from './App';
 import './index.css';
@@ -15,7 +16,10 @@ import './index.css';
 
 let store = createStore(
   reducers,
-  applyMiddleware(thunk)
+  applyMiddleware(
+    thunk,
+    apiMiddleware
+  )
   // window.__REDUX_DEVTOOLS_EXTENSION__ &&
   // window.__REDUX_DEVTOOLS_EXTENSION__()
 );

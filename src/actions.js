@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {fetchMovies, parseMovies} from './movied_api';
-
+import {dataService} from './api_service';
 export const ADD_MOVIES = 'addMovies';
 
 export const addMovies = (movies) => ({
@@ -11,6 +11,11 @@ export const addMovies = (movies) => ({
 export const seen = (id) => ({
   type: 'SEEN_MOVIE',
   id
+})
+
+export const getMovies = (route) => ({
+  type: 'GET_MOVIES',
+  route
 })
 
 
