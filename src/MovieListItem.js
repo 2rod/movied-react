@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class MovieListItem extends Component {
 
@@ -13,7 +14,9 @@ class MovieListItem extends Component {
     const {onSeen} = this.props;
     return (
       <div className="movie-item">
-        <img className={movie.seen ? "movie poster-seen " : "movie"} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
+        <Link to={"/movie/"+ movie.id}>
+          <img className={movie.seen ? "movie poster-seen " : "movie"} src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}/>
+        </Link>
         <button
           className={movie.seen ? "movie seen-movie" : "movie unseen-movie"}
           onClick={this.onSeen.bind(this, movie.id)}

@@ -11,14 +11,15 @@ const movies = (state = {}, action) => {
       });
       return newState;
 
-    case 'GET_MOVIES':
-      // if (action.isLoading) return ({ ...state, ...{isLoading: true}});
+    case 'GET_MOVIES_LOADING':
+      if (action.isLoading) return ({ ...state, ...{isLoading: true}});
       return state;
 
     case 'GET_MOVIES_RECEIVED':
       if (action.data) {
         console.log('action.data:', action.data);
         let parsedMovies = parseMovies(action.data);
+        console.log('parsedMovies', parsedMovies);
         return ({ ...state, ...parsedMovies });
       }
       return state;
@@ -31,6 +32,16 @@ const movies = (state = {}, action) => {
       return state;
   }
 }
+
+// const categories = (state = {}, action) => {
+//   switch (action.type) {
+//     case expression:
+//
+//       break;
+//     default:
+//
+//   }
+// }
 
 export const parseMovies = (moviesArray) => {
   let moviesObj = {};

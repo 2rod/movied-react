@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import {fetchMovies, parseMovies} from './movied_api';
-import {dataService} from './api_service';
+// import React, { Component } from 'react';
+// import {fetchMovies, parseMovies} from './movied_api';
+// import {dataService} from './api_service';
 export const ADD_MOVIES = 'addMovies';
 
 export const addMovies = (movies) => ({
@@ -19,11 +19,11 @@ export const getMovies = (route) => ({
 })
 
 
-const handleSeen = (dispatch) => (movieId)  => {
-  // const movie = this.props.movies[movieId];
-  // const newMovie = { ...movie };
-  // newMovie.seen = true;
-  // const movies = this.props.movies;
-  // movies[movieId] = newMovie;
-  dispatch(seen(movieId));
-};
+// const handleSeen = (dispatch) => (movieId)  => {
+//   // const movie = this.props.movies[movieId];
+//   // const newMovie = { ...movie };
+//   // newMovie.seen = true;
+//   // const movies = this.props.movies;
+//   // movies[movieId] = newMovie;
+//   dispatch(seen(movieId));
+// };

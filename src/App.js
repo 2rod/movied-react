@@ -6,10 +6,12 @@ import MovieList from './MovieList';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
 import {seen, getMovies} from './actions';
+import { Link } from 'react-router';
 import {fetchMovies} from './movied_api';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {/*amber800,*/black,grey100/*,grey900*/} from 'material-ui/styles/colors';
+import CategoriesMenu from './categories_menu';
 
 
 const muiTheme = getMuiTheme({
@@ -36,12 +38,14 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
+          <CategoriesMenu></CategoriesMenu>
           <AppBar title="Movied"/>
           <div style={{padding:24}}>
             <MovieList
               movies={this.props.movies}
               handleSeen={this.props.handleSeen.bind(this)}
               ></MovieList>
+              <li><Link to="/about">About</Link></li>
           </div>
         </div>
       </MuiThemeProvider>

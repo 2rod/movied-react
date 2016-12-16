@@ -1,17 +1,16 @@
 
-export const apiGenerator = (next) => (route, name) => {
+export const apiGenerator = (dispatch) => (route, name) => {
   fetch(route)
     .then((response) => response.json())
     .then((data) => {
-      console.log('in da apiGenerator', name);
-      next({
+      dispatch({
         type: `${name}_RECEIVED`,
         data
       })
     })
     .catch((error) => {
       console.log('error in apiGenerator');
-      return next({
+      return dispatch({
         type: `${name}_ERROR`,
         error
       })
@@ -19,7 +18,7 @@ export const apiGenerator = (next) => (route, name) => {
 }
 
 export const apiMiddleware = store => next => action => {
-  const getApi = apiGenerator(next)
+  const getApi = apiGenerator(store.dispatch)
   if (action.route) {
     console.log('action in middlew', action);
     getApi(action.route, action.type);
@@ -29,7 +28,6 @@ export const apiMiddleware = store => next => action => {
     })
   }
   next(action);
-
 }
 
 
